@@ -1,0 +1,70 @@
+
+
+
+
+// Process
+1. go to root (cd $home )
+
+2. git clone https://github.com/ashishrpandey/example-voting-app
+
+3. cd  /root/example-voting-app/k8s-specifications
+
+4. kubectl apply -f .
+
+// Commands Applied
+COMMAND --> kubectl apply -f
+COMMAND --> kubectl get all
+
+// Deleting Vote Pod
+
+COMMAND --> kubectl delete pod vote-7d884dd585-6rmzg
+
+---> New Pod is created => pod/vote-7d884dd585-f6hst  
+
+OBSERVATION AFTER DELETION:
+
+-- No specific changes observed or rendered on the Frontend
+-- A new Pod is created as pod/vote-7d884dd585-f6hst
+
+
+// Deleting Worker Pod
+
+COMMAND --> kubectl delete pod worker-6fc5d5b668-zhxhj
+
+---> New Pod is created => pod/worker-6fc5d5b668-9k7nb
+
+OBSERVATION AFTER DELETION:
+
+-- No specific changes observed or rendered on the Frontend
+-- A new Pod is created as pod/worker-6fc5d5b668-9k7nb
+
+// Deleting DB Pod
+
+COMMAND --> kubectl delete pod db-58cc845644-w9mtn
+
+---> New Pod is created => db-58cc845644-w9mtn 
+
+OBSERVATION AFTER DELETION:
+
+-- The data is no longer available but there is no impact on the Vote page/screen.
+-- A new Pod is created as db-58cc845644-w9mtn 
+-- The Worker and Result pod had a restart and "RESTARTS 1" for both of them.
+
+
+// Question:
+What happens after db pod deletion?
+
+-- The Worker and Result pod restarted after the db pod deletion, Worker pod is collecting the data and pusing to the Db.
+-- Result pod is leveraging the db and providing the vote related data from the db so both had the restart.
+-- after few seconds all are back to running states and new votes are taken into consideration.
+
+
+Key Learnings from the Training Session:
+
+-- Docker
+-- Kubernetes
+-- Dockerfile
+-- Containerization and Orchestration
+-- Volumes
+-- Service
+-- Deployment and Pods etc...
